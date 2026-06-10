@@ -48,11 +48,15 @@ japao.treinamentoMilitar()
 //Se nao possuir poder politico suficiente, exibe uma mensagem de erro
 japao.treinamentoMilitar(pPolitico: 50)
 ```
+**Demonstração:**  
+Poder Politico: 20  
+Tamanho do exercito: 250500  
+Nao possui Poder Politico Suficiente  
 ### Classe Democracia:
 ```swift
 let alemanha = Democracia(nome: "Alemanha", economia: 200, poderPolitico: 50, tamanhoExercito: 100000, suportePopular: true)
 
-//Executa o metodo pai
+//Executa o método herdado da classe Pais
 alemanha.treinamentoMilitar(pPolitico: 25)
 
 //Exibe as informacoes do pais democracia
@@ -66,7 +70,98 @@ alemanha.ganhoPoderPolitico()
 //Exibe as informacoes do pais democracia
 alemanha.exibirInformacoes()
 ```
+**Demonstração:**    
+Tamanho do exercito: 100050  
+Nome: Alemanha  
+Economia: 200  
+Poder Politico: 25  
+Tamanho do Exercito: 100050  
+Suporte Popular: Possui  
++15 Poder Politico  
+Nome: Alemanha  
+Economia: 200  
+Poder Politico: 40  
+Tamanho do Exercito: 100050  
+Suporte Popular: Possui  
 ### Classe Ditadura:
 ```swift
+let franca = Ditadura(nome: "Franca", economia: 200, poderPolitico: 70, tamanhoExercito: 100000, militarizacao: true)
 
+//Executa o método herdado da classe Pais
+franca.treinamentoMilitar(pPolitico: 15)
+
+//Exibe as informações do país ditadura
+franca.exibirInformacoes()
+
+//Sobrescreve o método pai, incrementando o tamanho do exército baseado na militarização
+//Se possui militarização, incrementa o tamanho do exército do país em +1000 e exibe uma mensagem
+//Se não possui militarização, incrementa o tamanho do exército do país em +750 e exibe uma mensagem
+franca.treinamentoMilitar()
+
+//Exibe as informações do país ditadura
+franca.exibirInformacoes()
 ```
+**Demonstração:**    
+Tamanho do exercito: 100030  
+Nome: Franca  
+Economia: 200  
+Poder Politico: 55  
+Tamanho do Exercito: 100030  
+Militarizacao: Possui  
++1000 Soldados  
+Nome: Franca  
+Economia: 200  
+Poder Politico: 55  
+Tamanho do Exercito: 101030  
+Militarizacao: Possui  
+### Classe Facção:
+```swift
+let franca = Ditadura(nome: "Franca", economia: 200, poderPolitico: 70, tamanhoExercito: 100000, militarizacao: true)
+let aliados = Faccao(nomeFaccao: "Aliados", lider: franca)
+let alemanha = Democracia(nome: "Alemanha", economia: 200, poderPolitico: 50, tamanhoExercito: 100000, suportePopular: true)
+
+//Quando a facção é criada, ela já possui um líder que também é incluído como membro automático
+//Exibe os dados da facção 
+aliados.exibirFaccao()
+
+//Adiciona um novo membro à facção e exibe uma mensagem de confirmação
+aliados.adicionarMembro(novoMembro: alemanha)
+
+//Exibe os dados da facção 
+aliados.exibirFaccao()
+```
+**Demonstração:**  
+Nome: Aliados  
+Lider: Franca  
+Membros:   
+-Franca  
+Alemanha juntou-se a facao Aliados  
+Nome: Aliados  
+Lider: Franca  
+Membros:   
+-Franca  
+-Alemanha  
+### Classe Ação Diplomatica:
+```swift
+let franca = Ditadura(nome: "Franca", economia: 200, poderPolitico: 1000, tamanhoExercito: 100000, militarizacao: true)
+let alemanha = Democracia(nome: "Alemanha", economia: 200, poderPolitico: 10, tamanhoExercito: 100000, suportePopular: true)
+
+let comercio = AcaoDiplomatica(tipo: "comercio", remetente: alemanha, destinatario: franca, aceito: true)
+
+//Chama o metodo enviar proposta
+//Se nao possuir poder politico o suficiente, mostra uma mensagem de erro
+//Se possui poder politico, desconta o custo e avalia o regime do destinatario:
+//  Ditadura: Se o remetente possuir mais poder politico que a metade do poder politico do destinatario, o acordo e aceito; se nao, e recusado
+//  Democracia: Se possuir suporte popular, aceita o acordo; se nao, recusa
+
+comercio.enviarProposta()
+alemanha.ganhoPoderPolitico()
+comercio.enviarProposta()
+```
+**Demonstração:**  
+O pais Alemanha propos um comercio para Franca  
+Acao cancelada: Alemanha nao possui Poder Politico suficiente para enviar a proposta (minimo: 15)  
++15 Poder Politico  
+O pais Alemanha propos um comercio para Franca  
+Alemanha gastou 15 de Poder Politico  
+Franca recusou o pacto de Alemanha  
