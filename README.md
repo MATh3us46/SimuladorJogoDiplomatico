@@ -48,6 +48,10 @@ japao.treinamentoMilitar()
 //Se nao possuir poder politico suficiente, exibe uma mensagem de erro
 japao.treinamentoMilitar(pPolitico: 50)
 ```
+**Demonstração:**  
+Poder Politico: 20  
+Tamanho do exercito: 250500  
+Nao possui Poder Politico Suficiente  
 ### Classe Democracia:
 ```swift
 let alemanha = Democracia(nome: "Alemanha", economia: 200, poderPolitico: 50, tamanhoExercito: 100000, suportePopular: true)
@@ -66,6 +70,19 @@ alemanha.ganhoPoderPolitico()
 //Exibe as informacoes do pais democracia
 alemanha.exibirInformacoes()
 ```
+**Demonstração:**    
+Tamanho do exercito: 100050  
+Nome: Alemanha  
+Economia: 200  
+Poder Politico: 25  
+Tamanho do Exercito: 100050  
+Suporte Popular: Possui  
++15 Poder Politico  
+Nome: Alemanha  
+Economia: 200  
+Poder Politico: 40  
+Tamanho do Exercito: 100050  
+Suporte Popular: Possui  
 ### Classe Ditadura:
 ```swift
 let franca = Ditadura(nome: "Franca", economia: 200, poderPolitico: 70, tamanhoExercito: 100000, militarizacao: true)
@@ -84,6 +101,19 @@ franca.treinamentoMilitar()
 //Exibe as informações do país ditadura
 franca.exibirInformacoes()
 ```
+**Demonstração:**    
+Tamanho do exercito: 100030  
+Nome: Franca  
+Economia: 200  
+Poder Politico: 55  
+Tamanho do Exercito: 100030  
+Militarizacao: Possui  
++1000 Soldados  
+Nome: Franca  
+Economia: 200  
+Poder Politico: 55  
+Tamanho do Exercito: 101030  
+Militarizacao: Possui  
 ### Classe Facção:
 ```swift
 let franca = Ditadura(nome: "Franca", economia: 200, poderPolitico: 70, tamanhoExercito: 100000, militarizacao: true)
@@ -100,7 +130,38 @@ aliados.adicionarMembro(novoMembro: alemanha)
 //Exibe os dados da facção 
 aliados.exibirFaccao()
 ```
+**Demonstração:**  
+Nome: Aliados  
+Lider: Franca  
+Membros:   
+-Franca  
+Alemanha juntou-se a facao Aliados  
+Nome: Aliados  
+Lider: Franca  
+Membros:   
+-Franca  
+-Alemanha  
 ### Classe Ação Diplomatica:
 ```swift
+let franca = Ditadura(nome: "Franca", economia: 200, poderPolitico: 1000, tamanhoExercito: 100000, militarizacao: true)
+let alemanha = Democracia(nome: "Alemanha", economia: 200, poderPolitico: 10, tamanhoExercito: 100000, suportePopular: true)
 
+let comercio = AcaoDiplomatica(tipo: "comercio", remetente: alemanha, destinatario: franca, aceito: true)
+
+//Chama o metodo enviar proposta
+//Se nao possuir poder politico o suficiente, mostra uma mensagem de erro
+//Se possui poder politico, desconta o custo e avalia o regime do destinatario:
+//  Ditadura: Se o remetente possuir mais poder politico que a metade do poder politico do destinatario, o acordo e aceito; se nao, e recusado
+//  Democracia: Se possuir suporte popular, aceita o acordo; se nao, recusa
+
+comercio.enviarProposta()
+alemanha.ganhoPoderPolitico()
+comercio.enviarProposta()
 ```
+**Demonstração:**  
+O pais Alemanha propos um comercio para Franca  
+Acao cancelada: Alemanha nao possui Poder Politico suficiente para enviar a proposta (minimo: 15)  
++15 Poder Politico  
+O pais Alemanha propos um comercio para Franca  
+Alemanha gastou 15 de Poder Politico  
+Franca recusou o pacto de Alemanha  
