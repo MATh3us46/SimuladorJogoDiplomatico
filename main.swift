@@ -22,6 +22,9 @@ public class Pais{
         print("Tamanho do exercito: \(tamanhoExercito)") 
     }
 
+//Regra Numero 1:
+//Se o jogador deseja aumentar o tamanho do seu exercito mais rapidamente,
+//ele usa um metodo que converte o poder politico em tropas para o exercito(1 pPolitico = 2 Soldados)
     public func treinamentoMilitar(pPolitico: Int){
         if self.poderPolitico >= pPolitico{
             self.poderPolitico -= pPolitico
@@ -133,6 +136,11 @@ public class AcaoDiplomatica {
         self.aceito = aceito
     }
 
+//Regra Numero 2:
+//Ao chamar o metodo enviarProposta, o sistema valida se o remetente possui Poder Politico suficiente
+//Se possuir, o custo e debitado e o sistema avalia o regime político do destinatario para ditar a aceitacao:
+//  Ditadura: Aceita se o PP restante do remetente for maior ou igual a metade do PP da ditadura destinataria.
+//  Democracia: Aceita automaticamente se a democracia destinataria possuir suporte popular ativo.
     public func enviarProposta(){
         let custoPP: Int = 15
         print("O pais \(remetente.nome) propos um \(tipo) para \(destinatario.nome)")
@@ -170,3 +178,23 @@ public class AcaoDiplomatica {
 }
 
 //------------------------ CLASSE MAIN ------------------------
+let franca = Ditadura(nome: "Franca", economia: 200, poderPolitico: 10, tamanhoExercito: 100000, militarizacao: true)
+let alemanha = Democracia(nome: "Alemanha", economia: 180, poderPolitico: 5, tamanhoExercito: 90000, suportePopular: true)
+let japao = Pais(nome: "Japao", economia: 95, poderPolitico: 40, tamanhoExercito: 250000)
+
+print("Criando a faccao: Aliados")
+let aliados = Faccao(nomeFaccao: "Aliados", lider: franca)
+aliados.adicionarMembro(novoMembro: alemanha)
+print("")
+
+print("Paises gerando poder politico e treinando tropas")
+alemanha.ganhoPoderPolitico() 
+franca.treinamentoMilitar()   
+
+print("Tentativa de treinamento rapido gastando Poder Politico:")
+japao.treinamentoMilitar(pPolitico: 30)
+print("")
+
+print("Iniciando Acoes Diplomaticas")
+let comercio = AcaoDiplomatica(tipo: "Tratado Comercial", remetente: alemanha, destinatario: franca, aceito: false)
+comercio.enviarProposta() 
