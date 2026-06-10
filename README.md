@@ -52,7 +52,7 @@ japao.treinamentoMilitar(pPolitico: 50)
 ```swift
 let alemanha = Democracia(nome: "Alemanha", economia: 200, poderPolitico: 50, tamanhoExercito: 100000, suportePopular: true)
 
-//Executa o metodo pai
+//Executa o método herdado da classe Pais
 alemanha.treinamentoMilitar(pPolitico: 25)
 
 //Exibe as informacoes do pais democracia
@@ -67,6 +67,40 @@ alemanha.ganhoPoderPolitico()
 alemanha.exibirInformacoes()
 ```
 ### Classe Ditadura:
+```swift
+let franca = Ditadura(nome: "Franca", economia: 200, poderPolitico: 70, tamanhoExercito: 100000, militarizacao: true)
+
+//Executa o método herdado da classe Pais
+franca.treinamentoMilitar(pPolitico: 15)
+
+//Exibe as informações do país ditadura
+franca.exibirInformacoes()
+
+//Sobrescreve o método pai, incrementando o tamanho do exército baseado na militarização
+//Se possui militarização, incrementa o tamanho do exército do país em +1000 e exibe uma mensagem
+//Se não possui militarização, incrementa o tamanho do exército do país em +750 e exibe uma mensagem
+franca.treinamentoMilitar()
+
+//Exibe as informações do país ditadura
+franca.exibirInformacoes()
+```
+### Classe Facção:
+```swift
+let franca = Ditadura(nome: "Franca", economia: 200, poderPolitico: 70, tamanhoExercito: 100000, militarizacao: true)
+let aliados = Faccao(nomeFaccao: "Aliados", lider: franca)
+let alemanha = Democracia(nome: "Alemanha", economia: 200, poderPolitico: 50, tamanhoExercito: 100000, suportePopular: true)
+
+//Quando a facção é criada, ela já possui um líder que também é incluído como membro automático
+//Exibe os dados da facção 
+aliados.exibirFaccao()
+
+//Adiciona um novo membro à facção e exibe uma mensagem de confirmação
+aliados.adicionarMembro(novoMembro: alemanha)
+
+//Exibe os dados da facção 
+aliados.exibirFaccao()
+```
+### Classe Ação Diplomatica:
 ```swift
 
 ```
