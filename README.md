@@ -15,7 +15,7 @@ Como simular a lógica e as regras de um jogo de estratégia geopolítica, contr
 ## Diagrama De Classes
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/15a458a6-04f8-4486-8b73-67bc999de056" alt="Diagrama de Classes UML" width="100%" />
+  <img src="https://github.com/user-attachments/assets/e51224d3-6a63-4125-b000-f403e1862769" alt="Diagrama de Classes UML" width="100%" />
 </div>
 
 ## Descrição sobre a linguagem escolhida:
